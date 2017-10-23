@@ -1,0 +1,33 @@
+<html xmlns:th="http://thymeleaf.org"> 
+ <body>  
+   <form action="getAllUsers" method="get">  
+    <table>  
+        <tr>  
+            <td><h4>User Name: </h4></td>  
+            <td><h4 th:text="${user.name}"></h4></td>  
+        </tr>  
+        <tr>  
+            <td><h4>Emp ID: </h4></td>  
+            <td><h4 th:text="${user.emp_id}"></h4></td>  
+        </tr>  
+        <tr>  
+            <td><h4>Role: </h4></td>  
+            <td><h4 th:text="${user.role}"></h4></td>  
+        </tr>  
+        <tr>  
+            <td><h4>Wage: </h4></td>  
+            <td><h4 th:text="${user.wage}"></h4></td>  
+        </tr>  
+        <tr>  
+            <td><h4>Emp Group: </h4></td>  
+            <td><h4 th:text="${user.emp_group}"></h4></td>  
+        </tr>             
+        <tr>  
+        <td></td>  
+        <td><input type="submit" value="Get All Users"></input></td>  
+    </tr>       
+    </table> 
+    </form>
+
+    </body> 
+</html>
