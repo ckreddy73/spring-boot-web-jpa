@@ -1,11 +1,9 @@
 spring:
     jpa:
-        database: MYSQL
-        hibernate:
-            ddl-auto: validate
+        database: MYSQL     
 
     datasource:
-        url: jdbc:mysql://mysql:3306/mydb
+        url: jdbc:mysql://172.18.0.2:3306/mydb
         username: root
         password: admin
         driver-class-name: com.mysql.jdbc.Driver

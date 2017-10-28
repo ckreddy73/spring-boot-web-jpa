@@ -21,6 +21,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		 <docker.image.name>springb-wjpa:v0.12</docker.image.name>
 		<java.version>1.8</java.version>
 	</properties>
 
@@ -57,6 +58,82 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+
+            <!--
+                   Remove any existing Docker image with the image name
+                   and image tag (project version) configured in the properties.
+           
+             <plugin>
+                 <groupId>com.spotify</groupId>
+                 <artifactId>docker-maven-plugin</artifactId>
+                 <version>1.0.0</version>
+                 <executions>
+                     <execution>
+                         <id>remove-image</id>
+                         <phase>clean</phase>
+                         <goals>
+                             <goal>removeImage</goal>
+                         </goals>
+                         <configuration>
+                             <imageName>${docker.image.name}</imageName>
+                             <imageTags>
+                                 <imageTag>${project.version}</imageTag>
+                             </imageTags>
+                             <verbose>true</verbose>
+                         </configuration>
+                     </execution>
+                 </executions>
+             </plugin>	
+             
+              <plugin>
+                   <groupId>com.spotify</groupId>
+                   <artifactId>dockerfile-maven-plugin</artifactId>
+                   <version>1.2.2</version>
+                   <executions>
+                       <execution>
+                           <id>default</id>
+                           <phase>package</phase>
+                           <goals>
+                               <goal>build</goal>
+                           </goals>
+                       </execution>
+                   </executions>
+                   <configuration>
+                       <contextDirectory>${project.build.directory}</contextDirectory>
+                       <writeTestMetadata>false</writeTestMetadata>
+                       <dockerInfoDirectory></dockerInfoDirectory>
+                       <verbose>true</verbose>
+                       <forceCreation>true</forceCreation>
+                       <imageName>${docker.image.name}</imageName>
+                       <repository>${docker.image.name}</repository>
+                       <tag>${project.version}</tag>
+                       <forceTags>true</forceTags>
+                       <pullNewerImage>false</pullNewerImage>
+                       <imageTags>
+                           <imageTag>${project.version}</imageTag>
+                       </imageTags>
+                       <dockerDirectory>src/main/resources</dockerDirectory>
+                   </configuration>
+              </plugin>            
+           -->    		
+			
+	        <plugin>
+	            <groupId>com.spotify</groupId>
+	            <artifactId>docker-maven-plugin</artifactId>
+	            <version>1.0.0</version>
+	            <configuration>
+	                <imageName>${docker.image.name}</imageName>
+	                <dockerDirectory>src/main/resources</dockerDirectory>
+	                <resources>
+	                    <resource>
+	                        <targetPath>/</targetPath>
+	                        <directory>${project.build.directory}</directory>
+	                        <include>${project.build.finalName}.jar</include>
+	                    </resource>
+	                </resources>
+	            </configuration>
+	        </plugin>	
+	        	
 		</plugins>
 	</build>
 
